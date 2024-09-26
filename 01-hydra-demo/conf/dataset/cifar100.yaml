@@ -1,0 +1,10 @@
+name: cifar100
+num_classes: 100
+train_split: train
+val_split: test
+data_augmentation:
+  random_crop: true
+  random_horizontal_flip: true
+  normalize:
+    mean: [0.5071, 0.4867, 0.4408]
+    std: [0.2675, 0.2565, 0.2761]

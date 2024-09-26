@@ -1,0 +1,10 @@
+name: mnist
+num_classes: 10
+train_split: train
+val_split: test
+data_augmentation:
+  random_crop: false
+  random_horizontal_flip: false
+  normalize:
+    mean: [0.1307]
+    std: [0.3081]

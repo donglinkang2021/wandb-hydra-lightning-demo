@@ -1,0 +1,4 @@
+name: adam
+lr_scheduler:
+  name: cosine_annealing
+  T_max: 200

@@ -1,0 +1,7 @@
+defaults:
+  - dataset: cifar100
+  - model: resnet50
+  - training: default
+  - optimizer: sgd
+  - hardware: default
+  - logging: default
