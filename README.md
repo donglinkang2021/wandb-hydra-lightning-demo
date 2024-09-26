@@ -1,12 +1,14 @@
 <div align=center>
 
-# WandB+Hydra Examples
+# WandB+Hydra+Lightning Examples
 
-<img src="https://img.shields.io/badge/-Weights%20&%20Biases-FFBE00?style=flat-square&logo=weightsandbiases&logoColor=FFFFFF">
+[![wandb](https://img.shields.io/badge/-Weights%20&%20Biases-FFBE00?style=flat-square&logo=weightsandbiases&logoColor=FFFFFF)](https://wandb.ai/)
+[![hydra](https://img.shields.io/badge/-Hydra-89B8CD?style=flat-square&logoColor=FFFFFF)](https://hydra.cc/)
+[![lightning](https://img.shields.io/badge/-Lightning-792EE5?style=flat-square&logo=lightning&logoColor=FFFFFF)](https://lightning.ai/)
 
 </div>
 
-This is a simple example of how to use [WandB](https://wandb.ai/) and [Hydra](https://hydra.cc/) together.
+This is a simple example of how to use [WandB](https://wandb.ai/), [Hydra](https://hydra.cc/) and [PyTorch Lightning](https://lightning.ai/) together.
 
 ## Installation
 
