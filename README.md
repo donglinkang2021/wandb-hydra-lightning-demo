@@ -83,3 +83,5 @@ In this example, we just use `lightning`, `torch`, `torchvision` and `torchmetri
 ```shell
 python 02-lightning-demo/train.py
 ```
+
+## 03-wandb-hydra-lightning-demo
