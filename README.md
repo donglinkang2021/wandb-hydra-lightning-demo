@@ -70,3 +70,16 @@ model: resnet18 dataset: mnist optimizer: adam
 model: resnet152 dataset: cifar100 optimizer: sgd
 100%|████████████████████████| 200/200 [00:00<00:00, 1992.22it/s]
 ```
+
+## 02-lightning-demo
+
+In this example, we just use `lightning`, `torch`, `torchvision` and `torchmetrics` to train a simple model.
+
+- `train.py` is the main script to train the model.
+- `model.py` contains the `LightningModule` class `ImagenetTransferLearning`, just used to train a pretrained `resnet50` on the CIFAR-10 dataset.
+- `dataset.py` contains the `DataModule` class `CIFAR10DataModule`, used to load the CIFAR-10 dataset.
+- `config.py` contains the configuration of the training process.
+
+```shell
+python 02-lightning-demo/train.py
+```
