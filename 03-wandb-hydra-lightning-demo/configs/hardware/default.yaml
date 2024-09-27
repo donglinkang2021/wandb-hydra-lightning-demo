@@ -1,0 +1,5 @@
+num_workers: 4
+accelerator: 'gpu'
+devices: [0]
+precision: 32
+num_nodes: 1

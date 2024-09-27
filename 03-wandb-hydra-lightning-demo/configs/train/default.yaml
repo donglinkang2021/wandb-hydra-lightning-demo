@@ -1,0 +1,2 @@
+batch_size: 128
+num_epochs: 20

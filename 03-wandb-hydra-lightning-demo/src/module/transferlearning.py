@@ -1,16 +1,16 @@
 import torch
 from torch import nn
-import torchvision.models as models
 import lightning as L
 import torchmetrics
+from .utils import get_backbone
 
 class ImagenetTransferLearning(L.LightningModule):
-    def __init__(self, num_target_classes:int, lr:float):
+    def __init__(self, backbone:str, num_classes:int, lr:float):
         super().__init__()
         self.save_hyperparameters()
 
         # init a pretrained resnet
-        backbone = models.resnet50(weights="DEFAULT")
+        backbone = get_backbone(backbone)
         num_filters = backbone.fc.in_features
         layers = list(backbone.children())[:-1]
         self.feature_extractor = nn.Sequential(*layers)
@@ -18,12 +18,11 @@ class ImagenetTransferLearning(L.LightningModule):
             param.requires_grad = False
 
         # use the pretrained model to classify cifar-10 (10 image classes)
-        
-        self.classifier = nn.Linear(num_filters, num_target_classes)
+        self.classifier = nn.Linear(num_filters, num_classes)
 
         self.loss_fn = nn.CrossEntropyLoss()
-        self.accuracy = torchmetrics.Accuracy(task = "multiclass", num_classes = num_target_classes)
-        self.f1_score = torchmetrics.F1Score(task = "multiclass", num_classes = num_target_classes)
+        self.accuracy = torchmetrics.Accuracy(task = "multiclass", num_classes = num_classes)
+        self.f1_score = torchmetrics.F1Score(task = "multiclass", num_classes = num_classes)
 
     def forward(self, x):
         representations = self.feature_extractor(x).flatten(1)

@@ -1,0 +1,2 @@
+data_root: /root/autodl-tmp/data
+torch_home: /root/autodl-tmp/.cache/torch
