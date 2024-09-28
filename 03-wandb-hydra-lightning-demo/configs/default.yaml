@@ -4,3 +4,4 @@ defaults:
   - dataset: cifar10
   - hardware: default
   - train: default
+  - wandb: default

@@ -1,6 +1,8 @@
 import os
 import lightning as L
+from lightning.pytorch.loggers import WandbLogger
 import hydra
+import wandb
 from pathlib import Path
 from omegaconf import OmegaConf, DictConfig # use DictConfig to type default hint
 from src.config.transferlearning_cifar10 import Config
@@ -18,6 +20,7 @@ def set_env(cfg: Config) -> None:
 @hydra.main(config_path="configs", config_name="default", version_base=None)
 def my_app(cfg: Config) -> None:
     # print(OmegaConf.to_yaml(cfg))
+    # return
     set_env(cfg)
 
     dm = CIFAR10DataModule(
@@ -32,7 +35,13 @@ def my_app(cfg: Config) -> None:
         lr = cfg.module.learning_rate
     )
 
+    wandb_logger = WandbLogger(
+        project=cfg.wandb.project,
+        log_model=cfg.wandb.log_model
+    )
+
     trainer = L.Trainer(
+        logger=wandb_logger,
         accelerator = cfg.hardware.accelerator,
         devices = cfg.hardware.devices,
         precision = cfg.hardware.precision,
@@ -43,6 +52,9 @@ def my_app(cfg: Config) -> None:
     trainer.fit(model, dm)
     trainer.validate(model, dm)
     trainer.test(model, dm)
+
+    wandb.finish()
+
 
 if __name__ == "__main__":
     my_app()

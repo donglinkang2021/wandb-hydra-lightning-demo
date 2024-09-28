@@ -30,6 +30,11 @@ class TrainConfig:
     num_epochs: int = MISSING
 
 @dataclass
+class WandbConfig:
+    project: str = MISSING
+    log_model: str = MISSING
+
+@dataclass
 class Config:
     env: EnvConfig = MISSING
     module: ModuleConfig = MISSING

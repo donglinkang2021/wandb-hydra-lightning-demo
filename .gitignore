@@ -3,3 +3,4 @@ outputs
 multirun
 __pycache__
 lightning_logs
+03-wandb-hydra-lightning-demo/TransferLearning-CIFAR10/
