@@ -2,6 +2,6 @@ defaults:
   - env: default
   - module: transferlearning
   - dataset: cifar10
-  - hardware: default
+  - hardware: cpu
   - train: default
   - wandb: default

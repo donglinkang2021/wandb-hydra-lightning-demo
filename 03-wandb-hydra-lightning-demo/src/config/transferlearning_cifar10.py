@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from omegaconf import MISSING
+from typing import List, Union
 
 @dataclass
 class EnvConfig:
@@ -20,7 +21,7 @@ class DatasetConfig:
 class HardwareConfig:
     num_workers: int = MISSING
     accelerator: str = MISSING
-    devices: list[int] = MISSING
+    devices: List[int] = MISSING
     precision: int = MISSING
     num_nodes: int = MISSING
 
@@ -32,7 +33,7 @@ class TrainConfig:
 @dataclass
 class WandbConfig:
     project: str = MISSING
-    log_model: str = MISSING
+    log_model: Union[bool, str] = MISSING
 
 @dataclass
 class Config:

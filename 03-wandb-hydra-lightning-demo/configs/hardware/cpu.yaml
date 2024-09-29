@@ -1,0 +1,5 @@
+num_workers: 4
+accelerator: cpu
+devices: auto
+precision: 32
+num_nodes: 1
