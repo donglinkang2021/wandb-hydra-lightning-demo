@@ -85,3 +85,27 @@ python 02-lightning-demo/train.py
 ```
 
 ## 03-wandb-hydra-lightning-demo
+
+In this example, we combine the above three examples together.
+
+- `main.py` is the main script to train the model.
+- `configs` contains the `.yaml` configuration.
+- `src` contains the source `lightning` code to train the model.
+
+> You need to login to WandB before running the code.
+
+```shell
+wandb login
+```
+
+Run different backbones to train the image classification model on CIFAR-10 dataset.
+
+```shell
+cd 03-wandb-hydra-lightning-demo
+python main.py --multirun \
+    module.backbone=resnet18,resnet34,resnet50
+```
+
+| train accuracy | val accuracy |
+| :-------------: | :----------: |
+| ![alt](images/README/W&B%20Chart%202024_9_29%2018_12_44.png) | ![alt](images/README/W&B%20Chart%202024_9_29%2018_14_29.png) |
