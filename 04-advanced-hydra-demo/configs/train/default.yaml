@@ -1,0 +1,2 @@
+max_epochs: 200
+lr: 3e-4

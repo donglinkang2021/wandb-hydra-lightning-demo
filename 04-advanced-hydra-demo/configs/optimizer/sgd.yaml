@@ -1,0 +1,4 @@
+_partial_: true
+_target_: torch.optim.SGD
+momentum: 0.9
+weight_decay: 1e-4

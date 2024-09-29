@@ -106,6 +106,53 @@ python main.py --multirun \
     module.backbone=resnet18,resnet34,resnet50
 ```
 
+You will see the results in the WandB dashboard.
+
 | train accuracy | val accuracy |
 | :-------------: | :----------: |
 | ![alt](images/README/W&B%20Chart%202024_9_29%2018_12_44.png) | ![alt](images/README/W&B%20Chart%202024_9_29%2018_14_29.png) |
+
+# 04-advanced-hydra-demo
+
+In this example, we use the `hydra.utils.instantiate` function to instantiate the class, so you can write the configuration in a more concise way, like this:
+
+```yaml
+optimizer:
+    _partial_: true
+    _target_: torch.optim.SGD
+    momentum: 0.9
+    weight_decay: 1e-4
+```
+
+- `_partial_: true` means that the configuration is a partial configuration, and the `optim_partial` below is just a **function** that needs to be called with the parameters.
+- `_target_: torch.optim.SGD` means that the `optimizer` is a `torch.optim.SGD` class.
+
+```python
+optim_partial = hydra.utils.instantiate(cfg.optimizer)
+optim:torch.optim.Optimizer = optim_partial(model.parameters(), lr=cfg.train.lr)
+```
+
+And you can run the following command to train the model with different learning rates.
+
+```shell
+python demo.py -m train.lr=1e-3,2e-3,5e-3,1e-2,2e-2,5e-2,1e-1,2e-1,5e-1
+```
+
+## Notes
+
+If you find that run the `wandb` script in the online mode (default) is too slow, you can use the offline mode by setting the `mode` parameter to `offline`.
+
+```python
+wandb.init(
+    mode='offline',
+    ...
+)
+```
+
+And you can sync the offline data to the online server by running the following command.
+
+```shell
+# just select one of the following commands, refer to https://github.com/wandb/wandb/issues/3111
+wandb sync --sync-all
+wandb sync --include-offline wandb/offline-*
+```
